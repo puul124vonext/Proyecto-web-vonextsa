@@ -39,7 +39,7 @@ return [
         'tenant_id' => env('MS_TENANT_ID'),
         'client_id' => env('MS_CLIENT_ID'),
         'client_secret' => env('MS_CLIENT_SECRET'),
-        'user_email' => env('MS_USER_EMAIL', 'info@vonextsa.com'),
+        'user_email' => env('MS_USER_EMAIL', 'paul.atiencia@vonextsa.com'),
     ],
 
 ];

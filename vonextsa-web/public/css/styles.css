@@ -1,0 +1,44 @@
+:root {
+    --primary-color: #87CEEB;
+    --primary-dark: #5BA3C6;
+    --bg-light: #F8FAFC;
+    --text-dark: #1F2937;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    padding: 120px 0 80px;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+.card {
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+#formResponse.success {
+    color: #059669;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #D1FAE5;
+}
+
+#formResponse.error {
+    color: #DC2626;
+    padding: 1rem;
+    border-radius: 8px;
+    background: #FEE2E2;
+}

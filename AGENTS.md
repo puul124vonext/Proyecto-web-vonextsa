@@ -1,82 +1,136 @@
-# AGENTS.md — Sitio Web Empresarial
+# AGENTS.md - Vonext Website Project
 
-# Agent Identity: Vonext Mailer Core
-**Role:** Microservicio de mensajería asíncrona mediante Guzzle  para envio de mail de Microsoft.
-**Objective:** Garantizar la entrega de notificaciones críticas con trazabilidad total.
-**Governance:** - Validación estricta de tokens OAuth 2.0.
-- Sanitización de payloads JSON antes del envío.
-- Manejo de reintentos con backoff exponencial.
+**Stack:** Laravel 11 + Bootstrap 5.3 + Microsoft Graph API + PHP 8.2+  
+**Hosting:** Bluehost (production) / Ultahost (staging)
 
-## Descripción del proyecto
-Sitio web informativo de empresa de servicios tecnológicos.
-Páginas: inicio (quiénes somos), servicios, contacto, en inicio deve estar la poluica de seguroidad como un icono que al presionarlo aparesca un pop-up
-Hosting Produccion: Bluehost Shared Hosting (cPanel).
-Hosting Pruebas : Ultahost Shared Hosting (cPanel).
-Dominio: vonextsa.com
-Politica de Seguridad: politicaseguridad.txt
-Imagenes las puedes tomar de internet en relacion a notificaciones digitales
+---
 
-## Stack exacto
-- Frontend : Bootstrap 5.3 (CDN) + CSS propio + JS vanilla
-- Backend  : Laravel 11 + PHP 8.5.4
-- Mail     : Guzzle client credentials
-- Hosting Produccion: Bluehost Shared Hosting (cPanel).
-- Hosting Pruebas : Ultahost Shared Hosting (cPanel).
+## 1. Build / Lint / Test Commands
 
-## Estructura de archivos Laravel (public/)
-- Views    : resources/views/layouts/app.blade.php, home.blade.php
-- Routes   : routes/web.php
-- Controllers: app/Http/Controllers/ContactController.php
-- Services : app/Services/EmailService.php
-- CSS      : public/css/styles.css
-- JS       : public/js/main.js
+```bash
+composer install && npm install
+php artisan serve                          # Dev server
+php artisan test                           # Run all tests
+php artisan test --filter=ContactFormTest  # Single test class
+php artisan test --filter=ContactFormTest::test_contact_form_validation_requires_name
+./vendor/bin/pint                          # Code style fix
+./vendor/bin/pint --test                   # Check only
+./vendor/bin/phpstan analyse               # Static analysis
+php artisan optimize:clear                 # Clear caches
+npm run build                              # Build frontend
+php artisan mail:test                      # Test mail
+```
 
-## Convenciones de código
-- HTML: semántico (header, main, section, footer), BEM para clases CSS propias
-- PHP: sin frameworks, PHP puro, tipado estricto (declare(strict_types=1))
-- JS: ES6+, sin jQuery, async/await para fetch
-- CSS: variables CSS en :root, mobile-first
+---
 
+## 2. Code Style Guidelines
 
-## Documentacion y readme
--mirar en la carpeta .opencode/skills/skill.md
+### PHP (Laravel)
+- **Strict types:** `declare(strict_types=1);` in all PHP files
+- **Naming:** Classes `PascalCase`, Methods/Properties `camelCase`, Constants `UPPER_SNAKE_CASE`
+- **Suffixes:** Controllers `*Controller.php`, Services `*Service.php`, Requests `*Request.php`
+- **Imports:** Fully qualified class names, organized alphabetically
+- **Return types:** Always specify including `void`
 
-## Seguridad — REGLAS CRÍTICAS
-NUNCA hardcodear: client_id, client_secret, tenant_id, mails destino
-Todos los secrets van en .env (raíz de public_html, fuera de git)
-Config se lee desde config.php usando $_ENV o parse_ini_file
-NUNCA exponer rutas de archivos internos en mensajes de error
-NUNCA confiar en inputs del usuario sin sanitizar con htmlspecialchars/filter_var
+```php
+<?php
+declare(strict_types=1);
+namespace App\Http\Controllers;
+use App\Http\Requests\ContactRequest;
+use App\Services\EmailService;
+use Illuminate\Http\JsonResponse;
 
-## Formulario de contacto
-- Validación: cliente (JS) + servidor (Laravel FormRequest) — siempre doble validación
-- Protección: CSRF token + rate limiting (max 3 envíos / 10 min por IP)
-- Destino mail: según tipo (soporte / ventas / información) → mail diferente
-- Servicio: Microsoft Graph API, endpoint POST /sendMail
-- Auth: OAuth2 client_credentials — token se cachea en Laravel cache
-- Sanitizar el texto
+class ContactController extends Controller {
+    public function __construct(private readonly EmailService $emailService) {}
+    public function send(ContactRequest $request): JsonResponse { /* ... */ }
+}
+```
 
-## Variables de entorno requeridas (.env)
-MS_TENANT_ID      = xxxx-xxxx-xxxx
-MS_CLIENT_ID      = xxxx-xxxx-xxxx
-MS_CLIENT_SECRET  = xxxxxxxxxxxx
-MAIL_SENDER       = paul.atiencia@vonextsa.com
-MAIL_SOPORTE      = soporte@vonextsa.com
-MAIL_VENTAS       = info@vonextsa.com
-MAIL_INFO         = info@vonextsa.com
-CSRF_SECRET       = string-random-32-chars
+### Blade
+- Use `{{-- comments --}}`, escape all output: `{{ $var }}` (never `{!! $var !!}`), use `@csrf`
 
-## NO modificar sin revisión
-- app/Services/EmailService.php → integración Graph API, bien testeada
-- .htaccess          → seguridad de Apache, no tocar headers de seguridad
-- config/mail.php    → configuración de emails, no agregar valores hardcoded
+### JavaScript (ES6+)
+- No jQuery, use `const`/`let`, async/await, template literals, try/catch always
 
-## Skills disponibles (en .claude/skills/)
-- html-section.md    → crear nueva sección HTML con Bootstrap 5
-- php-form.md        → handler PHP del formulario
-- office365-mail.md  → integración Graph API + OAuth2
-- security-web.md    → CSRF, headers, .htaccess, sanitización
-- deploy-bluehost.md → checklist antes de hacer deploy
+```javascript
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    try {
+        const res = await fetch(form.action, {
+            method: 'POST', body: new FormData(form),
+            headers: { 'X-CSRF-TOKEN': document.querySelector('[name="_token"]').value }
+        });
+    } catch (error) { console.error(error); }
+});
+```
 
-## Comando de verificación pre-deploy
-/deploy-check → revisa seguridad y estructura antes de subir a Bluehost
+### CSS
+- CSS custom properties in `:root`, mobile-first `@media (min-width:...)`, BEM naming
+
+---
+
+## 3. Error Handling
+- Wrap API calls in try/catch, log errors: `Log::error()`, never expose stack traces
+- Use Laravel FormRequest for validation
+
+---
+
+## 4. Security Rules
+- **NEVER** hardcode credentials - use `.env` only
+- **ALWAYS** sanitize: `strip_tags()`, `filter_var()`
+- **ALWAYS** validate client AND server
+- Use CSRF tokens + rate limiting: `->middleware('throttle:3,10')`
+
+---
+
+## 5. Project Structure
+```
+vonextsa-web/
+├── app/Http/Controllers/ContactController.php
+├── app/Http/Requests/ContactRequest.php
+├── app/Services/EmailService.php
+├── config/mail.php, services.php
+├── resources/views/layouts/app.blade.php, home.blade.php
+├── routes/web.php
+├── tests/Feature/ContactFormTest.php
+├── public/css/styles.css, js/main.js
+├── .env (never commit), .env.example
+```
+
+---
+
+## 6. Environment Variables
+```env
+MS_TENANT_ID=
+MS_CLIENT_ID=
+MS_CLIENT_SECRET=
+MAIL_SENDER=info@vonextsa.com
+MAIL_SOPORTE=soporte@vonextsa.com
+MAIL_VENTAS=info@vonextsa.com
+MAIL_INFO=info@vonextsa.com
+APP_KEY=
+CSRF_SECRET=32-char-random-string
+```
+
+---
+
+## 7. Git Workflow
+- Branch: `V{Year}R{Release}#{Number}` (e.g., `V26R1`)
+- Commit: imperative mood, past tense, always create new branch
+
+---
+
+## 8. Contact Form Rules
+- Double validation: client (JS) + server (FormRequest)
+- Rate limit: 3 sends / 10 min per IP
+- Email routing by type: soporte/ventas/info → different destinations
+- Microsoft Graph API POST /sendMail, OAuth2 client_credentials, token cached
+- Sanitize all text input with `strip_tags()`
+
+---
+
+## 9. Skills & Docs
+- `.opencode/skills/` - Project-specific skills
+- `.opencode/commands/` - Custom commands
+- `.opencode/prompts/` - Reusable prompts
+- `PLAN-DE-IMPLEMENTACION.md` - Full implementation plan
