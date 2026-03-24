@@ -80,3 +80,5 @@ CSRF_SECRET       = string-random-32-chars
 
 ## Comando de verificación pre-deploy
 /deploy-check → revisa seguridad y estructura antes de subir a Bluehost
+
+## Git y versiones al realizar cambios se debe crwear un nuevo branch como el formato V"Año"RTelease#concatenado (Empezamos en el numero 1)
