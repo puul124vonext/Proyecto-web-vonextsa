@@ -318,6 +318,14 @@ chmod -R 755 storage bootstrap/cache
 - Guía de configuración de BD para entornos (local/staging/producción)
 - Validación pre-commit documentada
 
+### v26Release5
+- Imágenes cargadas en public/assets/img/ (img1-5.png, nosotros.gif, animaciones)
+- Carrusel/slider en sección inicio con 5 slides
+- Cambio de nosotros.gif por referencia correcta en la página
+- Animaciones logodowndr.gif y logodowniz.gif en footer
+- Estilos CSS para carrusel y animaciones de footer
+- Proporciones de página conservadas
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)

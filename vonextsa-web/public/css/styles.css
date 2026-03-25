@@ -3,14 +3,12 @@
     --primary-dark: #5BA3C6;
     --bg-light: #F8FAFC;
     --text-dark: #1F2937;
+    --footer-bg: #406cab;
 }
 
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    padding: 120px 0 80px;
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
+    padding: 0;
+    background: var(--footer-bg);
 }
 
 .navbar-brand img {
@@ -41,4 +39,84 @@ section {
     padding: 1rem;
     border-radius: 8px;
     background: #FEE2E2;
+}
+
+#heroCarousel .carousel-item {
+    text-align: center;
+    background: var(--footer-bg);
+}
+
+#heroCarousel .carousel-img {
+    max-height: 375px;
+    width: 80% !important;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+}
+
+#heroCarousel .carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.rs-footer {
+    background: var(--footer-bg);
+    position: relative;
+    padding: 40px 0 20px;
+    color: #ffffff;
+}
+
+.footer-title {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-contact-info p {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+.footer-contact-info a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+.footer-contact-info a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    background: rgba(0,0,0,0.15);
+    padding: 15px 0;
+    margin-top: 30px;
+    position: relative;
+}
+
+.footer-bottom .copyright {
+    color: #e0e0e0;
+    font-size: 14px;
+}
+
+.footer-bottom .copyright a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-anim-left {
+    position: absolute;
+    bottom: 2px;
+    left: 10px;
+}
+
+.footer-anim-right {
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
 }

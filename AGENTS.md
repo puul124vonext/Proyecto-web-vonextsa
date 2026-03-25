@@ -108,6 +108,7 @@ vonextsa-web/
 ├── routes/web.php
 ├── tests/Feature/ContactFormTest.php
 ├── public/css/styles.css, js/main.js
+├── public/assets/img/ (imágenes: img1-5.png, nosotros.gif, logodowndr.gif, logodowniz.gif)
 ├── .env (never commit), .env.example
 ```
 
