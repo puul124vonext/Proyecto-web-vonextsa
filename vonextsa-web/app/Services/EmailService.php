@@ -26,6 +26,17 @@ class EmailService
         $this->senderEmail = config('mail.mail_sender', 'info@vonextsa.com');
     }
 
+    private function createGuzzleClient(): Client
+    {
+        $options = ['timeout' => 30];
+
+        if (app()->environment('local')) {
+            $options['verify'] = false;
+        }
+
+        return new Client($options);
+    }
+
     private function getAccessToken(): string
     {
         $cacheKey = 'ms_graph_token';
@@ -34,7 +45,7 @@ class EmailService
             return cache()->get($cacheKey);
         }
 
-        $guzzle = new Client;
+        $guzzle = $this->createGuzzleClient();
         $url = "https://login.microsoftonline.com/{$this->tenantId}/oauth2/v2.0/token";
 
         try {
@@ -63,8 +74,8 @@ class EmailService
     {
         $token = $this->getAccessToken();
 
-        $guzzle = new Client;
-        $url = 'https://graph.microsoft.com/v1.0/me/sendMail';
+        $guzzle = $this->createGuzzleClient();
+        $url = "https://graph.microsoft.com/v1.0/users/{$this->senderEmail}/sendMail";
 
         $message = [
             'message' => [

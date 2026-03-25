@@ -48,4 +48,31 @@ class ContactController extends Controller
             ], 500);
         }
     }
+
+    public function testEmail(): JsonResponse
+    {
+        try {
+            $this->emailService->sendContactEmail(
+                config('mail.mail_soporte', 'soporte@vonextsa.com'),
+                [
+                    'name' => 'Test User',
+                    'email' => 'test@example.com',
+                    'subject_type' => 'soporte',
+                    'message' => 'Este es un mensaje de prueba del sistema.',
+                ]
+            );
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Test email sent successfully to soporte@vonextsa.com',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Test email error: '.$e->getMessage());
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Error sending test email: '.$e->getMessage(),
+            ], 500);
+        }
+    }
 }

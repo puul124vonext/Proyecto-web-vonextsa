@@ -1,12 +1,12 @@
 # VONEXT S.A - Sitio Web Corporativo
 
-Sitio web profesional para VONEXT S.A, empresa líder en soluciones de comunicación empresarial. Construido con Laravel 11, Bootstrap 5.3 e integración con Microsoft Graph API para gestión de emails corporativos.
+Sitio web profesional para VONEXT S.A, empresa líder en soluciones de comunicación empresarial. Construido con Laravel 11, Bootstrap 5.3 e integración con Microsoft Graph API vía Guzzle HTTP para gestión de emails corporativos.
 
 ## 🚀 Características
 
 - **Framework**: Laravel 11 con PHP 8.2+
 - **Frontend**: Bootstrap 5.3 + Vanilla JavaScript (sin jQuery)
-- **Email Integration**: Microsoft Graph API con OAuth2 Client Credentials Grant
+- **Email Integration**: Guzzle HTTP → Microsoft Graph API REST (OAuth2)
 - **Validación**: Doble validación (cliente-side JS + servidor-side FormRequest)
 - **Seguridad**: CSRF tokens, rate limiting (3 mensajes/10 min por IP), sanitización de entrada
 - **Responsive**: Diseño mobile-first con media queries
@@ -14,11 +14,12 @@ Sitio web profesional para VONEXT S.A, empresa líder en soluciones de comunicac
 
 ## 📋 Requisitos
 
-- PHP 8.2+
+- PHP 8.2+ (local: `C:\Program Files\PHP\8.5.4\ts\x64`)
 - Composer
 - Node.js & npm
+- XAMPP (MySQL + phpMyAdmin)
 - Laravel 11
-- Guzzle (para Microsoft Graph API)
+- Guzzle HTTP
 
 ## 🔧 Instalación Rápida
 
@@ -40,12 +41,50 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-### 4. Configurar Microsoft Graph API
+### 3.1. Configurar Base de Datos MySQL
+
+El proyecto usa **MySQL** como base de datos principal (nunca SQLite).
+
+#### Local (XAMPP)
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vonextsa
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+#### Crear base de datos en phpMyAdmin
+1. Iniciar XAMPP (Apache + MySQL)
+2. Abrir http://localhost/phpmyadmin
+3. Crear base de datos llamada `vonextsa` (charset: utf8mb4)
+4. Ejecutar migraciones: `php artisan migrate`
+
+#### Staging (Ultahost) / Producción (Bluehost)
+Configurar con las credenciales proporcionadas por el hosting:
+```env
+DB_CONNECTION=mysql
+DB_HOST=hosting-server-ip
+DB_PORT=3306
+DB_DATABASE=nombre_bd
+DB_USERNAME=usuario_bd
+DB_PASSWORD=password_bd
+```
+
+#### Ejecutar migraciones
+```bash
+php artisan migrate          # Local
+php artisan migrate --force  # Producción
+php artisan migrate:status   # Verificar estado
+```
+
+### 4. Configurar Email (Microsoft Graph API vía Guzzle)
 
 Edita `.env` con tus credenciales:
 
 ```env
-# Microsoft Graph API
+# Microsoft Graph API (Guzzle OAuth2)
 MS_TENANT_ID=9bfa3daa-c4c3-4e31-9bfb-9b158cb559b2
 MS_CLIENT_ID=fb23f572-a97f-4352-bb6d-d4e3157485d5
 MS_CLIENT_SECRET=Wb38Q~hliJ4k8~xBhuZtknff9Z4LlCu0R4rf7ctI
@@ -70,6 +109,17 @@ php artisan serve
 
 El sitio estará disponible en `http://127.0.0.1:8000`
 
+## ⚠️ Pre-Commit Validation (OBLIGATORIO)
+
+Antes de hacer commit/push, SIEMPRE ejecutar:
+
+1. **Tests PHPUnit:** `php artisan test` (todos deben pasar)
+2. **Code style:** `./vendor/bin/pint --test` (debe ser PASS)
+3. **Arrancar servidor:** `php artisan serve`
+4. **Verificar página:** Abrir `http://127.0.0.1:8000` y confirmar que carga correctamente
+5. **Test envío de email:** Usar el endpoint `/test-email` o el formulario de contacto
+6. Solo después de TODAS estas verificaciones → hacer commit/push
+
 ## 📁 Estructura del Proyecto
 
 ```
@@ -83,7 +133,7 @@ Proyecto-web-vonextsa/
 │   │   │   └── Requests/
 │   │   │       └── ContactRequest.php
 │   │   ├── Services/
-│   │   │   └── EmailService.php          # Microsoft Graph API
+│   │   │   └── EmailService.php          # Guzzle → Microsoft Graph API
 │   │   ├── Providers/
 │   │   └── Models/
 │   ├── config/
@@ -152,16 +202,16 @@ GET http://localhost:8000/test-email
 }
 ```
 
-## 📧 Integración Microsoft Graph API
+## 📧 Integración Email (Guzzle → Microsoft Graph API)
 
-El proyecto incluye integración completa con Microsoft Graph API para envío de emails corporativos.
+El proyecto usa **Guzzle HTTP Client** para comunicarse con Microsoft Graph API REST para envío de emails corporativos.
 
 ### Flujo de Autenticación
 ```
 1. Usuario completa formulario de contacto
 2. Validación cliente-side (JS) + servidor-side (FormRequest)
-3. EmailService autentica con Microsoft Graph API
-4. Microsoft envía email desde paul.atiencia@vonextsa.com
+3. EmailService autentica vía Guzzle (OAuth2 client_credentials)
+4. Guzzle envía email a Microsoft Graph API REST
 5. Confirmación al usuario
 ```
 
@@ -204,8 +254,8 @@ Tests: 7 passed (12 assertions)
 ## 🚀 Deployment
 
 ### Hosting
-- **Producción**: Bluehost (vonextsa.com)
-- **Staging**: Ultahost
+- **Producción**: Bluehost (vonextsa.com) - MySQL
+- **Staging**: Ultahost - MySQL
 
 ### Pasos de Deployment
 
@@ -248,7 +298,7 @@ chmod -R 755 storage bootstrap/cache
 - Setup de routes y controllers
 
 ### v26Release2
-- Integración completa de Microsoft Graph API
+- Integración Guzzle → Microsoft Graph API REST
 - Testing de email integration
 - Endpoint `/test-email` para validación
 - Todos los tests pasando (7/7)
@@ -258,6 +308,15 @@ chmod -R 755 storage bootstrap/cache
 - README.md profesional
 - Guías de instalación y deployment
 - Estándares de código documentados
+
+### v26Release4
+- Migración de SQLite a MySQL (XAMPP)
+- Eliminación de database.sqlite
+- Configuración MySQL para XAMPP local
+- Removido microsoft/microsoft-graph SDK (se usa Guzzle directamente)
+- Documentación actualizada (AGENTS.md, README.md)
+- Guía de configuración de BD para entornos (local/staging/producción)
+- Validación pre-commit documentada
 
 ## 📝 Estándares de Código
 
@@ -347,12 +406,12 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 24, 2026 - v26Release3 - Documentación completa
+Marzo 25, 2026 - v26Release4 - Migración a MySQL
 
 ---
 
 **Desarrollado por**: OpenCode AI Assistant  
 **Empresa**: VONEXT S.A  
-**Stack**: Laravel 11 + Bootstrap 5.3 + Microsoft Graph API  
+**Stack**: Laravel 11 + Bootstrap 5.3 + Guzzle HTTP  
 **Hosting**: Bluehost (producción) / Ultahost (staging)  
 **Repository**: https://github.com/puul124vonext/Proyecto-web-vonextsa
