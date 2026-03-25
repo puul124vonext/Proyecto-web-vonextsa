@@ -42,17 +42,16 @@
                 <div class="col-md-4 mb-4">
                     <h3 class="footer-title">Información de contacto</h3>
                     <div class="footer-contact-info">
-                        <p>&#128205; [Dirección de la empresa]<br>[Ciudad] - Ecuador</p>
-                        <p>&#128222; <a href="tel:+593000000000">(+593) 00 000 0000</a></p>
+                        <p>&#128205; Avenida 6 de diciembre N31-89, Edificio Cosideco, 3rd Piso y Whymper<br>Quito - Ecuador</p>
+                        <p>&#128222; <a href="tel:+593000000000">(+593) 2904999</a></p>
                         <p>&#9993; <a href="mailto:info@vonextsa.com">info@vonextsa.com</a></p>
-                        <p>&#128241; WhatsApp: (+593) 000 000 0000</p>
+                        <p>&#128241; WhatsApp: (+593) 997566741</p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
                     <h3 class="footer-title">Horario de atención</h3>
                     <div class="footer-contact-info">
-                        <p>Lunes - Viernes<br>08:00 - 17:00</p>
-                        <p>Sábado<br>09:00 - 13:00</p>
+                        <p>Lunes - Viernes<br>09:00 - 18:00</p>
                     </div>
                 </div>
             </div>
