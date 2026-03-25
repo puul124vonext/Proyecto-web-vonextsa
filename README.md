@@ -320,11 +320,14 @@ chmod -R 755 storage bootstrap/cache
 
 ### v26Release5
 - Imágenes cargadas en public/assets/img/ (img1-5.png, nosotros.gif, animaciones)
-- Carrusel/slider en sección inicio con 5 slides
+- Carrusel/slider en sección inicio con 5 slides auto-rotate
 - Cambio de nosotros.gif por referencia correcta en la página
-- Animaciones logodowndr.gif y logodowniz.gif en footer
-- Estilos CSS para carrusel y animaciones de footer
-- Proporciones de página conservadas
+- Animaciones logodowndr.gif y logodowniz.gif en footer-bottom (franja copyright)
+- Footer azul #406cab con estructura contacto estilo atphonecenter.com
+- Carrusel 80% ancho, 375px altura, proporciones originales
+- Estilos CSS para carrusel, footer y animaciones
+- Guía DEPLOYMENT-ULTAHOST.md generada
+- README único (eliminado duplicado en vonextsa-web/)
 
 ## 📝 Estándares de Código
 
@@ -414,7 +417,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 25, 2026 - v26Release4 - Migración a MySQL
+Marzo 25, 2026 - v26Release5 - Carrusel, footer azul, animaciones
 
 ---
 
