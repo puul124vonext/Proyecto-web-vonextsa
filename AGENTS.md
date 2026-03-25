@@ -1,7 +1,8 @@
 # AGENTS.md - Vonext Website Project
 
-**Stack:** Laravel 11 + Bootstrap 5.3 + Microsoft Graph API + PHP 8.2+  
+**Stack:** Laravel 11 + Bootstrap 5.3 + Guzzle HTTP + PHP 8.2+  
 **Hosting:** Bluehost (production) / Ultahost (staging)
+**Entorno local:** XAMPP (MySQL + phpMyAdmin) / PHP 8.5.4 en `C:\Program Files\PHP\8.5.4\ts\x64`
 
 ---
 
@@ -20,6 +21,19 @@ php artisan optimize:clear                 # Clear caches
 npm run build                              # Build frontend
 php artisan mail:test                      # Test mail
 ```
+
+---
+
+## 1.1 Pre-Commit Validation (OBLIGATORIO antes de commit/push)
+
+Antes de hacer commit/push, SIEMPRE ejecutar:
+
+1. **Tests PHPUnit:** `php artisan test` (todos deben pasar)
+2. **Code style:** `./vendor/bin/pint --test` (debe ser PASS)
+3. **Arrancar servidor:** `php artisan serve`
+4. **Verificar página:** Abrir `http://127.0.0.1:8000` y confirmar que carga correctamente
+5. **Test envío de email:** Usar el endpoint `/test-email` o el formulario de contacto
+6. Solo después de TODAS estas verificaciones → hacer commit/push
 
 ---
 
@@ -101,6 +115,7 @@ vonextsa-web/
 
 ## 6. Environment Variables
 ```env
+# Mail (Guzzle → Microsoft Graph API OAuth2)
 MS_TENANT_ID=
 MS_CLIENT_ID=
 MS_CLIENT_SECRET=
@@ -124,12 +139,26 @@ CSRF_SECRET=32-char-random-string
 - Double validation: client (JS) + server (FormRequest)
 - Rate limit: 3 sends / 10 min per IP
 - Email routing by type: soporte/ventas/info → different destinations
-- Microsoft Graph API POST /sendMail, OAuth2 client_credentials, token cached
+- Email via Guzzle HTTP → Microsoft Graph API REST (OAuth2 client_credentials, token cached)
 - Sanitize all text input with `strip_tags()`
 
 ---
 
-## 9. Skills & Docs
+## 9. Database Configuration
+- **Driver:** MySQL (nunca SQLite)
+- **Local (XAMPP):** MySQL en localhost:3306, user root, sin password, DB: vonextsa
+- **phpMyAdmin:** http://localhost/phpmyadmin (XAMPP)
+- **PHP path:** `C:\Program Files\PHP\8.5.4\ts\x64`
+- **php.ini:** Habilitar `extension=pdo_mysql` y `extension=mysqli` (quitar `;`)
+- **Staging (Ultahost):** Configurar con credenciales del hosting
+- **Producción (Bluehost):** Configurar con credenciales del hosting
+- Schema disponible en `database/vonextsa_schema.sql`
+- Ejecutar migraciones: `php artisan migrate`
+- Verificar conexión: `php artisan migrate:status`
+
+---
+
+## 10. Skills & Docs
 - `.opencode/skills/` - Project-specific skills
 - `.opencode/commands/` - Custom commands
 - `.opencode/prompts/` - Reusable prompts
