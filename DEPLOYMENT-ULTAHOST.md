@@ -1,68 +1,74 @@
 # Guía de Deployment - Hosting Ultahost (Staging)
 
-## Requisitos del Hosting
+## Datos de conexión
 
-### Software Instalado
-- PHP 8.2+ con extensiones: pdo_mysql, mbstring, openssl, curl, gd, zip
-- MySQL 5.7+ o MariaDB 10.3+
+| Dato | Valor |
+|------|-------|
+| SSH usuario | `uugtkczm` |
+| SSH IP | `198.54.132.28` |
+| Dominio | `vonextnotifications6.com` |
+| BD MySQL | `uugtkczm_vonextsa` |
+| MySQL usuario | `uugtkczm_vonetxsa` |
+| MySQL pass | `V0n3xts@1.!` |
+| PHP | 8.4 |
+| Git repo | `Vonextweb_prb` |
+| Repo path | `/home/uugtkczm/Vonextweb_prb` |
+| SSH key | `PaginaWeb.pub` (carpeta UltaHost) |
+
+## Requisitos del Hosting (ya configurados)
+
+- PHP 8.4 con extensiones: pdo_mysql, mbstring, openssl, curl, gd, zip
+- MySQL (base: `uugtkczm_vonextsa`)
 - Apache con mod_rewrite habilitado
 - Composer
-- Node.js y npm (para build de assets)
-- Acceso SSH
-
-### Configuración de MySQL
-- Crear base de datos: `vonextsa`
-- Crear usuario con permisos completos sobre la base
-- Charset: utf8mb4
+- Acceso SSH con llave pública
 
 ## Pasos de Deployment
 
 ### 1. Conectar por SSH
 ```bash
-ssh usuario@tu-dominio.com
+ssh -i UltaHost/PaginaWeb.pub uugtkczm@198.54.132.28
 ```
 
-### 2. Navegar al directorio público
+### 2. Navegar al directorio del repositorio
 ```bash
-cd /home/vonextsa/public_html
+cd /home/uugtkczm/Vonextweb_prb
 ```
 
-### 3. Clonar repositorio
+### 3. Pull último código desde GitHub
 ```bash
-git clone https://github.com/puul124vonext/Proyecto-web-vonextsa.git
-cd Proyecto-web-vonextsa/vonextsa-web
+git pull origin main
 ```
 
 ### 4. Instalar dependencias
 ```bash
 composer install --no-dev --optimize-autoloader
-npm install
-npm run build
 ```
 
 ### 5. Configurar archivo .env
 ```bash
 cp .env.example .env
+nano .env
 ```
 
-Editar `.env` con credenciales del hosting:
+Configurar con estos valores:
 ```env
 APP_ENV=production
 APP_DEBUG=false
-APP_URL=https://tu-dominio.com
+APP_URL=https://vonextnotifications6.com
 
 DB_CONNECTION=mysql
 DB_HOST=localhost
 DB_PORT=3306
-DB_DATABASE=vonextsa
-DB_USERNAME=usuario_bd
-DB_PASSWORD=password_bd
+DB_DATABASE=uugtkczm_vonextsa
+DB_USERNAME=uugtkczm_vonetxsa
+DB_PASSWORD=V0n3xts@1.!
 
 SESSION_DRIVER=file
 CACHE_STORE=file
 QUEUE_CONNECTION=sync
 
-# Microsoft Graph API (credenciales)
+# Microsoft Graph API (Guzzle OAuth2)
 MS_TENANT_ID=9bfa3daa-c4c3-4e31-9bfb-9b158cb559b2
 MS_CLIENT_ID=fb23f572-a97f-4352-bb6d-d4e3157485d5
 MS_CLIENT_SECRET=Wb38Q~hliJ4k8~xBhuZtknff9Z4LlCu0R4rf7ctI
@@ -94,38 +100,21 @@ php artisan view:cache
 ### 9. Configurar permisos
 ```bash
 chmod -R 755 storage bootstrap/cache
-chown -R vonextsa:vonextsa storage bootstrap/cache
 ```
 
-### 10. Configurar Apache
+### 10. Configurar Apache (DocumentRoot)
 Asegurar que el DocumentRoot apunte a `public/`:
 ```
-/home/vonextsa/public_html/Proyecto-web-vonextsa/vonextsa-web/public
+/home/uugtkczm/Vonextweb_prb/vonextsa-web/public
 ```
 
-Crear/verificar `.htaccess` en `public/`:
-```apache
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
-
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
-</IfModule>
-```
-
-### 11. Configurar SSL
-Instalar certificado SSL (Let's Encrypt o certificado del hosting).
+### 11. Configurar SSL (si no está instalado)
+Instalar certificado SSL desde cPanel de Ultahost o con Let's Encrypt.
 
 ### 12. Verificar deployment
 ```bash
 # Verificar que el sitio carga
-curl -I https://tu-dominio.com
+curl -I https://vonextnotifications6.com
 
 # Verificar conexión a base de datos
 php artisan migrate:status
@@ -144,15 +133,17 @@ tail -f storage/logs/laravel.log
 ### Error de base de datos
 - Verificar credenciales en `.env`
 - Verificar que MySQL está corriendo
-- Verificar que la base de datos existe
+- Verificar que la base de datos `uugtkczm_vonextsa` existe
 
 ### Assets no cargan
-- Ejecutar `npm run build`
-- Verificar que `public/build/` existe
-- Verificar permisos de archivos
+- Verificar permisos de archivos en `public/assets/img/`
+
+### Error de SSL
+- Verificar certificado SSL en cPanel de Ultahost
 
 ## Rollback
 ```bash
+cd /home/uugtkczm/Vonextweb_prb
 git checkout main
 git pull origin main
 composer install --no-dev
