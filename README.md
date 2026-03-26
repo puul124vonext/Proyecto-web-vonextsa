@@ -336,6 +336,12 @@ chmod -R 755 storage bootstrap/cache
 - Referencia visual de https://atphonecenter.com
 - Fix formulario contacto (conflicto CSRF token)
 
+### v26Release7
+- Mejora modal Política de Seguridad con secciones (Introducción, Objetivo, Alcance, Principios)
+- Botón estilo btn-outline-primary más visible
+- Favicon con "V" corporativa (reemplaza icono de mundo)
+- Diseño scrollable y gradiente en header del modal
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)
@@ -424,7 +430,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 25, 2026 - v26Release5 - Carrusel, footer azul, animaciones
+Marzo 26, 2026 - v26Release7 - Mejora modal política seguridad, favicon V corporativa
 
 ---
 
