@@ -1,61 +1,64 @@
-# Guía de Deployment - Hosting Ultahost (Staging)
+# Guía de Deployment - Hosting Ultahost (cPanel)
 
 ## Datos de conexión
 
 | Dato | Valor |
 |------|-------|
-| SSH usuario | `uugtkczm` |
-| SSH IP | `198.54.132.28` |
+| cPanel URL | https://vonextnotifications6.com:2083 |
 | Dominio | `vonextnotifications6.com` |
 | BD MySQL | `uugtkczm_vonextsa` |
 | MySQL usuario | `uugtkczm_vonetxsa` |
 | MySQL pass | `V0n3xts@1.!` |
 | PHP | 8.4 |
-| Git repo | `Vonextweb_prb` |
-| Repo path | `/home/uugtkczm/Vonextweb_prb` |
-| SSH key | `PaginaWeb.pub` (carpeta UltaHost) |
+| Git repo path | `/home/uugtkczm/web1` |
+| GitHub repo | `https://github.com/puul124vonext/Proyecto-web-vonextsa.git` |
 
 ## Requisitos del Hosting (ya configurados)
 
 - PHP 8.4 con extensiones: pdo_mysql, mbstring, openssl, curl, gd, zip
 - MySQL (base: `uugtkczm_vonextsa`)
 - Apache con mod_rewrite habilitado
-- Composer
-- Acceso SSH con llave pública
+- cPanel con Git Version Control habilitado
 
-## Pasos de Deployment
+## Método de Deployment: cPanel Git Version Control
 
-### 1. Conectar por SSH
+### Fase 1: Clonar repositorio (cPanel)
+
+1. Acceder a cPanel → **Files** → **Git Version Control**
+2. Click **Create** o **Clone**
+3. Configurar:
+   - Clone URL: `https://github.com/puul124vonext/Proyecto-web-vonextsa.git`
+   - Repository Path: `/home/uugtkczm/web1`
+   - Repository Name: `web1`
+4. Click **Create**
+5. Verificar que los archivos están en `/home/uugtkczm/web1`
+
+### Fase 2: Subir dependencias (File Manager)
+
+**En tu máquina local:**
 ```bash
-ssh -i UltaHost/PaginaWeb.pub uugtkczm@198.54.132.28
-```
-
-### 2. Navegar al directorio del repositorio
-```bash
-cd /home/uugtkczm/Vonextweb_prb
-```
-
-### 3. Pull último código desde GitHub
-```bash
-git pull origin main
-```
-
-### 4. Instalar dependencias
-```bash
+cd "C:\Users\patiencia\Documents\VISUAL CODE\Proyecto-web-vonextsa\vonextsa-web"
 composer install --no-dev --optimize-autoloader
 ```
 
-### 5. Configurar archivo .env
-```bash
-cp .env.example .env
-nano .env
-```
+**Subir al servidor:**
+1. Comprimir carpeta `vendor/` en `vendor.zip`
+2. cPanel → **File Manager** → `/home/uugtkczm/web1/vonextsa-web`
+3. Click **Upload** → Subir `vendor.zip`
+4. Click derecho en `vendor.zip` → **Extract**
 
-Configurar con estos valores:
+### Fase 3: Configurar .env (File Manager)
+
+1. En File Manager → `/home/uugtkczm/web1/vonextsa-web`
+2. Click **File** → **New File** → Nombre: `.env`
+3. Pegar contenido:
+
 ```env
+APP_NAME=VonextSA
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://vonextnotifications6.com
+APP_KEY=base64:GENERAR_CON_PHP_ARTISAN
 
 DB_CONNECTION=mysql
 DB_HOST=localhost
@@ -68,7 +71,6 @@ SESSION_DRIVER=file
 CACHE_STORE=file
 QUEUE_CONNECTION=sync
 
-# Microsoft Graph API (Guzzle OAuth2)
 MS_TENANT_ID=9bfa3daa-c4c3-4e31-9bfb-9b158cb559b2
 MS_CLIENT_ID=fb23f572-a97f-4352-bb6d-d4e3157485d5
 MS_CLIENT_SECRET=Wb38Q~hliJ4k8~xBhuZtknff9Z4LlCu0R4rf7ctI
@@ -80,55 +82,56 @@ MAIL_VENTAS=info@vonextsa.com
 MAIL_INFO=info@vonextsa.com
 ```
 
-### 6. Generar clave de aplicación
+### Fase 4: Configurar dominio (cPanel)
+
+1. cPanel → **Domains** → `vonextnotifications6.com`
+2. Click en el dominio → **Manage**
+3. Cambiar **Document Root** a:
+   ```
+   /home/uugtkczm/web1/vonextsa-web/public
+   ```
+4. Click **Update** o **Save**
+
+### Fase 5: Configurar permisos (File Manager)
+
+1. En File Manager → `/home/uugtkczm/web1/vonextsa-web`
+2. Click derecho en carpeta `storage/` → **Change Permissions**
+3. Establecer permisos a **755**
+4. Repetir para carpeta `bootstrap/cache/`
+
+### Fase 6: Verificar deployment
+
+1. Abrir https://vonextnotifications6.com en navegador
+2. Verificar que carga correctamente
+3. Probar formulario de contacto
+4. Si aparece error 500, revisar `storage/logs/laravel.log`
+
+---
+
+## Deployment futuro (automático)
+
+Una vez configurado, para actualizaciones:
+
+**En tu máquina local:**
 ```bash
-php artisan key:generate
+git add -A
+git commit -m "mensaje descriptivo"
+git push origin main
 ```
 
-### 7. Ejecutar migraciones
-```bash
-php artisan migrate --force
-```
+**En cPanel:**
+1. Ir a **Git Version Control**
+2. Seleccionar repositorio `web1`
+3. Click **Pull** o **Deploy** para actualizar
 
-### 8. Optimizar para producción
-```bash
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
-```
-
-### 9. Configurar permisos
-```bash
-chmod -R 755 storage bootstrap/cache
-```
-
-### 10. Configurar Apache (DocumentRoot)
-Asegurar que el DocumentRoot apunte a `public/`:
-```
-/home/uugtkczm/Vonextweb_prb/vonextsa-web/public
-```
-
-### 11. Configurar SSL (si no está instalado)
-Instalar certificado SSL desde cPanel de Ultahost o con Let's Encrypt.
-
-### 12. Verificar deployment
-```bash
-# Verificar que el sitio carga
-curl -I https://vonextnotifications6.com
-
-# Verificar conexión a base de datos
-php artisan migrate:status
-
-# Verificar logs
-tail -f storage/logs/laravel.log
-```
+---
 
 ## Troubleshooting
 
 ### Error 500
-- Verificar permisos de `storage/` y `bootstrap/cache/`
-- Verificar que `.env` tiene APP_KEY configurado
-- Revisar `storage/logs/laravel.log`
+- Verificar permisos de `storage/` y `bootstrap/cache/` (deben ser 755)
+- Verificar que `.env` tiene `APP_KEY` configurado
+- Revisar logs: File Manager → `storage/logs/laravel.log`
 
 ### Error de base de datos
 - Verificar credenciales en `.env`
@@ -137,16 +140,22 @@ tail -f storage/logs/laravel.log
 
 ### Assets no cargan
 - Verificar permisos de archivos en `public/assets/img/`
+- Verificar que las imágenes están en `public/assets/img/`
 
 ### Error de SSL
-- Verificar certificado SSL en cPanel de Ultahost
+- Verificar certificado SSL en cPanel → **SSL/TLS**
+- Instalar Let's Encrypt si no está configurado
 
-## Rollback
-```bash
-cd /home/uugtkczm/Vonextweb_prb
-git checkout main
-git pull origin main
-composer install --no-dev
-php artisan migrate --force
-php artisan config:cache
-```
+### APP_KEY no configurado
+- Generar clave localmente: `php artisan key:generate --show`
+- Copiar la clave y pegar en `.env` del servidor
+
+---
+
+## Rollback (cPanel Git)
+
+1. En cPanel → **Git Version Control**
+2. Seleccionar repositorio `web1`
+3. Click **History** para ver commits anteriores
+4. Seleccionar commit estable
+5. Click **Deploy** para restaurar versión anterior
