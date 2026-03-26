@@ -329,6 +329,13 @@ chmod -R 755 storage bootstrap/cache
 - Guía DEPLOYMENT-ULTAHOST.md generada
 - README único (eliminado duplicado en vonextsa-web/)
 
+### v26Release6
+- Modal popup de Política de Seguridad
+- Enlace "Política de Seguridad" bajo el carrusel de imágenes
+- Texto de política tomado de logo/PoiliticaSeguridad.txt
+- Referencia visual de https://atphonecenter.com
+- Fix formulario contacto (conflicto CSRF token)
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)
