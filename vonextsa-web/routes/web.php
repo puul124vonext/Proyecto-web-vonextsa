@@ -14,7 +14,7 @@ Route::post('/contact/send', [ContactController::class, 'send'])
     ->middleware('throttle:3,10');
 
 // Development testing only
-if (app()->isLocal()) {
+if (app()->isLocal() || config('app.debug', false) === true) {
     Route::get('/test-email', [ContactController::class, 'testEmail'])
         ->name('test.email');
 }

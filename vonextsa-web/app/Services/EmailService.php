@@ -24,6 +24,14 @@ class EmailService
         $this->clientId = config('services.ms.client_id', '');
         $this->clientSecret = config('services.ms.client_secret', '');
         $this->senderEmail = config('mail.mail_sender', 'info@vonextsa.com');
+
+        Log::info('=== EmailService Diagnostic ===');
+        Log::info('Tenant ID: '.($this->tenantId ? 'SET' : 'EMPTY'));
+        Log::info('Client ID: '.($this->clientId ? 'SET' : 'EMPTY'));
+        Log::info('Client Secret: '.($this->clientSecret ? 'SET' : 'EMPTY'));
+        Log::info('Sender Email: '.$this->senderEmail);
+        Log::info('App Environment: '.app()->environment());
+        Log::info('================================');
     }
 
     private function createGuzzleClient(): Client
@@ -42,11 +50,16 @@ class EmailService
         $cacheKey = 'ms_graph_token';
 
         if (cache()->has($cacheKey)) {
+            Log::info('Using cached token');
+
             return cache()->get($cacheKey);
         }
 
         $guzzle = $this->createGuzzleClient();
         $url = "https://login.microsoftonline.com/{$this->tenantId}/oauth2/v2.0/token";
+
+        Log::info('Intentando obtener token de: '.$url);
+        Log::info('TenantInfo: '.$this->tenantId);
 
         try {
             $response = $guzzle->post($url, [
@@ -63,10 +76,23 @@ class EmailService
 
             cache()->put($cacheKey, $token, now()->addSeconds($data['expires_in'] - 300));
 
+            Log::info('Token obtenido exitosamente');
+
             return $token;
         } catch (GuzzleException $e) {
-            Log::error('Failed to get access token: '.$e->getMessage());
-            throw new \RuntimeException('Failed to authenticate with Microsoft Graph API');
+            $errorMsg = 'Failed to get access token: '.$e->getMessage();
+            Log::error($errorMsg);
+
+            try {
+                if ($e->hasResponse()) {
+                    $responseBody = (string) $e->getResponse()->getBody();
+                    Log::error('Response body: '.$responseBody);
+                }
+            } catch (\Exception $logError) {
+                Log::error('Could not get response body: '.$logError->getMessage());
+            }
+
+            throw new \RuntimeException('Failed to authenticate with Microsoft Graph API: '.$e->getMessage());
         }
     }
 
