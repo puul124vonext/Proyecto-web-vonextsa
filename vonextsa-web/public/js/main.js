@@ -17,9 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.content || ''
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
                 }
             });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.message || 'Error del servidor');
+            }
 
             const data = await response.json();
 
@@ -36,7 +42,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             responseDiv.classList.remove('d-none');
             responseDiv.className = 'mt-3 alert alert-danger';
-            responseDiv.textContent = 'Error de conexión. Intente nuevamente.';
+            responseDiv.textContent = 'Error de conexión: ' + error.message;
+            console.error('Form error:', error);
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = 'Enviar Mensaje';
