@@ -21,7 +21,9 @@ php artisan optimize:clear                 # Clear caches
 npm run build                              # Build frontend
 php artisan mail:test                      # Test mail
 ```
-
+## 1.0 Cambios
+- Cada ves q se solicite un cambio revisar la rama y preguntyar si se trabaja en la ultima version  o se crear una nueva, nuca trabajar con mail.
+ - Despues de realizar los cambios hacer el merga a mail.
 ---
 
 ## 1.1 Pre-Commit Validation (OBLIGATORIO antes de commit/push)
