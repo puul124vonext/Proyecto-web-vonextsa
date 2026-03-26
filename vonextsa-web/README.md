@@ -229,10 +229,11 @@ Ver guía completa: `../DEPLOYMENT-ULTAHOST.md`
 - **v26Release5**: Carrusel imágenes, footer azul con contacto, animaciones
 - **v26Release6**: Mejora modal política de seguridad y botón en homepage
 - **v26Release7**: Favicon con V corporativa, mejoras visuales popup
+- **v26Release8**: Fix routing producción (.htaccess), diagnóstico logging EmailService
 
 ## 📅 Última actualización
 
-Marzo 26, 2026 - v26Release7
+Marzo 26, 2026 - v26Release8 - Formulario de contacto funcionando en producción
 
 ---
 
