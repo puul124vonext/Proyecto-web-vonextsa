@@ -82,15 +82,28 @@ MAIL_VENTAS=info@vonextsa.com
 MAIL_INFO=info@vonextsa.com
 ```
 
-### Fase 4: Configurar dominio (cPanel)
+### Fase 4: Configurar public_html (File Manager)
 
-1. cPanel → **Domains** → `vonextnotifications6.com`
-2. Click en el dominio → **Manage**
-3. Cambiar **Document Root** a:
-   ```
-   /home/uugtkczm/web1/vonextsa-web/public
-   ```
-4. Click **Update** o **Save**
+Como no se puede cambiar el DocumentRoot, configuramos public_html para que apunte a Laravel:
+
+1. En File Manager → `/home/uugtkczm/public_html`
+2. Subir `index.php_hosting` desde `vonextsa-web/public/index.php_hosting`
+3. Renombrar `index.php_hosting` a `index.php`
+4. Subir `.htaccess` desde `vonextsa-web/public/.htaccess`
+5. Subir carpeta `css/` desde `vonextsa-web/public/css/`
+6. Subir carpeta `js/` desde `vonextsa-web/public/js/`
+7. Subir carpeta `assets/` desde `vonextsa-web/public/assets/`
+
+Estructura final en `public_html/`:
+```
+public_html/
+├── index.php          ← index.php_hosting renombrado
+├── .htaccess          ← copiar de vonextsa-web/public/
+├── css/               ← copiar de vonextsa-web/public/css/
+├── js/                ← copiar de vonextsa-web/public/js/
+├── assets/            ← copiar de vonextsa-web/public/assets/
+└── storage/           ← symlink o copiar
+```
 
 ### Fase 5: Configurar permisos (File Manager)
 
