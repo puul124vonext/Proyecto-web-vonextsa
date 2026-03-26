@@ -228,10 +228,11 @@ Ver guía completa: `../DEPLOYMENT-ULTAHOST.md`
 - **v26Release4**: Migración a MySQL, corrección dependencias, fix email
 - **v26Release5**: Carrusel imágenes, footer azul con contacto, animaciones
 - **v26Release6**: Mejora modal política de seguridad y botón en homepage
+- **v26Release7**: Favicon con V corporativa, mejoras visuales popup
 
 ## 📅 Última actualización
 
-Marzo 26, 2026 - v26Release6
+Marzo 26, 2026 - v26Release7
 
 ---
 
