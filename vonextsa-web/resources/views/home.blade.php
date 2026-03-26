@@ -61,25 +61,50 @@
     </div>
 </section>
 
-<div class="text-center py-3" style="background-color: #e8f4fc;">
-    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#politicaSeguridadModal" style="color: #406cab; font-weight: 500;">
-        <i class="fas fa-shield-alt me-2"></i>Política de Seguridad
+<div class="text-center py-4" style="background-color: #e8f4fc;">
+    <a href="#" class="btn btn-outline-primary btn-lg px-4 shadow-sm d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#politicaSeguridadModal">
+        <i class="fas fa-shield-alt"></i>Política de Seguridad
     </a>
 </div>
 
 <div class="modal fade" id="politicaSeguridadModal" tabindex="-1" aria-labelledby="politicaSeguridadModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header" style="background-color: #406cab; color: white;">
-                <h5 class="modal-title" id="politicaSeguridadModalLabel">POLÍTICA GENERAL DE LA SEGURIDAD DE LA INFORMACIÓN</h5>
+    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0" style="background: linear-gradient(135deg, #406cab 0%, #2d4a73 100%); color: white;">
+                <div class="d-flex align-items-center gap-3">
+                    <i class="fas fa-shield-alt fa-lg"></i>
+                    <h5 class="modal-title fw-bold" id="politicaSeguridadModalLabel">POLÍTICA GENERAL DE SEGURIDAD DE LA INFORMACIÓN</h5>
+                </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-4">
-                <p class="lead">Orientar nuestro talento humano y recursos para definir directrices que permitan proteger la información de la empresa y de las partes interesadas.</p>
-                <p>Estableciendo un marco de referencia para la gestión de seguridad de la información, a través de la cual se define las funciones, responsabilidades y medidas necesarias para garantizar su integridad y confidencialidad dentro de un marco legal, de mejoramiento continuo y crecimiento sostenido.</p>
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Introducción</h6>
+                    <p class="lead text-dark">Orientar nuestro talento humano y recursos para definir directrices que permitan proteger la información de la empresa y de las partes interesadas.</p>
+                </div>
+                <hr class="my-4">
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Objetivo</h6>
+                    <p>Estableciendo un marco de referencia para la gestión de seguridad de la información, a través de la cual se define las funciones, responsabilidades y medidas necesarias para garantizar su integridad y confidencialidad dentro de un marco legal, de mejoramiento continuo y crecimiento sostenido.</p>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Alcance</h6>
+                    <p>Esta política aplica a todos los colaboradores, proveedores y partes interesadas que interactúen con los sistemas de información de VONEXT S.A.</p>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Principios Fundamentales</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Confidencialidad:</strong> Protección de información sensible contra accesos no autorizados.</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Integridad:</strong> Salvaguarda de la precisión y completitud de la información.</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Disponibilidad:</strong> Acceso autorizado a la información cuando se requiera.</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Cumplimiento:</strong> Adherencia a normativas legales y estándares de seguridad.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="modal-footer border-0 bg-light">
+                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-2"></i>Cerrar
+                </button>
             </div>
         </div>
     </div>
