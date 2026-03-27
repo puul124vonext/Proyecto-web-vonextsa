@@ -341,6 +341,21 @@ chmod -R 755 storage bootstrap/cache
 - Botón estilo btn-outline-primary más visible
 - Favicon con "V" corporativa (reemplaza icono de mundo)
 - Diseño scrollable y gradiente en header del modal
+- Configuración .htaccess para hosting (rewrite rules)
+- Entorno de producción optimizado
+
+### v26Release8
+- Configuración adicional de producción
+- Endpoint de diagnóstico y logging
+
+### v26Release9
+- Nuevo logo vonextsa_V1.png con mayor resolución
+- Intercambio de posición navbar: logo a la derecha, opciones a la izquierda
+- Eliminación de GIFs animados del footer
+- Optimización de rendimiento del carrusel (lazy loading, intervalo reducido)
+- Regla: siempre trabajar en el release más reciente
+- Regla: nunca hacer cambios en rama main
+- Regla: README siempre actualizado antes de commit/push/merge
 
 ## 📝 Estándares de Código
 
@@ -417,6 +432,8 @@ Rate limiting activo: 3 mensajes / 10 minutos. Esperar 10 minutos o cambiar IP.
 4. Push: `git push origin V26Release{N}`
 5. Abrir Pull Request
 
+**⚠️ Nunca hacer cambios directamente en la rama `main`.**
+
 ## 📧 Contacto
 
 - **Email Soporte**: soporte@vonextsa.com
@@ -430,7 +447,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 26, 2026 - v26Release7 - Mejora modal política seguridad, favicon V corporativa
+Marzo 27, 2026 - v26Release9 - Logo nuevo, layout navbar, quitar GIFs, rendimiento carrusel
 
 ---
 
