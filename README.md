@@ -336,6 +336,23 @@ chmod -R 755 storage bootstrap/cache
 - Referencia visual de https://atphonecenter.com
 - Fix formulario contacto (conflicto CSRF token)
 
+### v26Release7
+- Configuración .htaccess para hosting (rewrite rules)
+- Entorno de producción optimizado
+
+### v26Release8
+- Configuración adicional de producción
+- Endpoint de diagnóstico y logging
+
+### v26Release9
+- Nuevo logo vonextsa_V1.png con mayor resolución
+- Intercambio de posición navbar: logo a la derecha, opciones a la izquierda
+- Eliminación de GIFs animados del footer
+- Optimización de rendimiento del carrusel (lazy loading, intervalo reducido)
+- Regla: siempre trabajar en el release más reciente
+- Regla: nunca hacer cambios en rama main
+- Regla: README siempre actualizado antes de commit/push/merge
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)
@@ -411,6 +428,8 @@ Rate limiting activo: 3 mensajes / 10 minutos. Esperar 10 minutos o cambiar IP.
 4. Push: `git push origin V26Release{N}`
 5. Abrir Pull Request
 
+**⚠️ Nunca hacer cambios directamente en la rama `main`.**
+
 ## 📧 Contacto
 
 - **Email Soporte**: soporte@vonextsa.com
@@ -424,7 +443,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 25, 2026 - v26Release5 - Carrusel, footer azul, animaciones
+Marzo 27, 2026 - v26Release9 - Logo nuevo, layout navbar, quitar GIFs, rendimiento carrusel
 
 ---
 

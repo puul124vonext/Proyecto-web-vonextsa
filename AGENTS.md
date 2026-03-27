@@ -22,8 +22,10 @@ npm run build                              # Build frontend
 php artisan mail:test                      # Test mail
 ```
 ## 1.0 Cambios
+- Siempre ubicarse en el release más reciente y por cada cambio preguntar si el cambio es en el release actual o crear un nuevo release.
 - Cada ves q se solicite un cambio revisar la rama y preguntyar si se trabaja en la ultima version  o se crear una nueva, nuca trabajar con mail.
- - Despues de realizar los cambios hacer el merga a mail.
+- Despues de realizar los cambios hacer el merga a mail.
+- El archivo README es el ubicado en proyecto-web-vonetxsa y siempre debe ser actualizado antes de hacer el commit push merge y pull.
 ---
 
 ## 1.1 Pre-Commit Validation (OBLIGATORIO antes de commit/push)

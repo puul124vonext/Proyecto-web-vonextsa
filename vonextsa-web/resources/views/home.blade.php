@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="inicio" class="hero-section text-white text-center position-relative overflow-hidden">
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/img/img2.png') }}" class="d-block carousel-img" alt="Slide 2">
+                <img src="{{ asset('assets/img/img2.png') }}" class="d-block carousel-img" alt="Slide 2" loading="lazy">
                 <div class="carousel-caption">
                     <h1 class="display-4 fw-bold">Innovación Empresarial</h1>
                     <p class="lead">Tecnología de vanguardia para tu negocio</p>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/img/img3.png') }}" class="d-block carousel-img" alt="Slide 3">
+                <img src="{{ asset('assets/img/img3.png') }}" class="d-block carousel-img" alt="Slide 3" loading="lazy">
                 <div class="carousel-caption">
                     <h1 class="display-4 fw-bold">Conectividad Total</h1>
                     <p class="lead">Integra tus sistemas con soluciones robustas</p>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/img/img4.png') }}" class="d-block carousel-img" alt="Slide 4">
+                <img src="{{ asset('assets/img/img4.png') }}" class="d-block carousel-img" alt="Slide 4" loading="lazy">
                 <div class="carousel-caption">
                     <h1 class="display-4 fw-bold">Soporte Especializado</h1>
                     <p class="lead">Equipo dedicado a tu servicio 24/7</p>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="{{ asset('assets/img/img5.png') }}" class="d-block carousel-img" alt="Slide 5">
+                <img src="{{ asset('assets/img/img5.png') }}" class="d-block carousel-img" alt="Slide 5" loading="lazy">
                 <div class="carousel-caption">
                     <h1 class="display-4 fw-bold">Confianza y Seguridad</h1>
                     <p class="lead">Protección garantizada para tus comunicaciones</p>

@@ -12,20 +12,20 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('assets/logo/logo.jpg') }}" alt="VONEXT" height="40">
-            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
                 </ul>
             </div>
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('assets/logo/logo.png') }}" alt="VONEXT" height="40">
+            </a>
         </div>
     </nav>
 
@@ -37,7 +37,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <img src="{{ asset('assets/logo/logo.jpg') }}" alt="VONEXT" height="50" class="mb-3">
+                    <img src="{{ asset('assets/logo/logo.png') }}" alt="VONEXT" height="50" class="mb-3">
                     <p class="footer-contact-info">Soluciones de comunicación empresarial avanzadas para su organización.</p>
                 </div>
                 <div class="col-md-4 mb-4">
@@ -68,8 +68,7 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ asset('assets/img/logodowniz.gif') }}" alt="VONEXT" class="footer-anim-left" width="80">
-            <img src="{{ asset('assets/img/logodowndr.gif') }}" alt="VONEXT" class="footer-anim-right" width="80">
+
         </div>
     </footer>
 

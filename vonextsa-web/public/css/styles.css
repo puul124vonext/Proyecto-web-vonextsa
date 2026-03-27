@@ -109,14 +109,4 @@ section {
     text-decoration: none;
 }
 
-.footer-anim-left {
-    position: absolute;
-    bottom: 2px;
-    left: 10px;
-}
 
-.footer-anim-right {
-    position: absolute;
-    bottom: 2px;
-    right: 10px;
-}
