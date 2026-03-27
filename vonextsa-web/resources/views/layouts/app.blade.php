@@ -46,7 +46,7 @@
                         <p>&#128205; Avenida 6 de diciembre N31-89, Edificio Cosideco, 3rd Piso y Whymper<br>Quito - Ecuador</p>
                         <p>&#128222; <a href="tel:+593000000000">(+593) 2904999</a></p>
                         <p>&#9993; <a href="mailto:info@vonextsa.com">info@vonextsa.com</a></p>
-                        <p>&#128241; WhatsApp: (+593) 997566741</p>
+                        <p>&#128241; <a href="https://wa.me/593997566741" target="_blank" rel="noopener noreferrer">WhatsApp: (+593) 997566741</a></p>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
