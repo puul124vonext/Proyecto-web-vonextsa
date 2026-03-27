@@ -360,6 +360,10 @@ chmod -R 755 storage bootstrap/cache
 ### v26Release10
 - Link clickeable de WhatsApp en footer para contacto directo (wa.me/593997566741)
 
+### v26Release11
+- Actualización de README con secciones de versiones v26Release10 y v26Release11
+- Sección "Última actualización" con fecha y hora
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)
@@ -450,7 +454,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 27, 2026 - v26Release10 - Link WhatsApp clickeable en footer
+Marzo 27, 2026 - 11:45 - v26Release11 - Link WhatsApp, docs actualizadas con fecha y hora
 
 ---
 
