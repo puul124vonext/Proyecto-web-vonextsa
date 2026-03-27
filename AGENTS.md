@@ -26,6 +26,7 @@ php artisan mail:test                      # Test mail
 - Cada ves q se solicite un cambio revisar la rama y preguntyar si se trabaja en la ultima version  o se crear una nueva, nuca trabajar con mail.
 - Despues de realizar los cambios hacer el merga a mail.
 - El archivo README es el ubicado en proyecto-web-vonetxsa y siempre debe ser actualizado antes de hacer el commit push merge y pull.
+- Siempre actualizar Readme
 ---
 
 ## 1.1 Pre-Commit Validation (OBLIGATORIO antes de commit/push)

@@ -357,6 +357,9 @@ chmod -R 755 storage bootstrap/cache
 - Regla: nunca hacer cambios en rama main
 - Regla: README siempre actualizado antes de commit/push/merge
 
+### v26Release10
+- Link clickeable de WhatsApp en footer para contacto directo (wa.me/593997566741)
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)
@@ -447,7 +450,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 27, 2026 - v26Release9 - Logo nuevo, layout navbar, quitar GIFs, rendimiento carrusel
+Marzo 27, 2026 - v26Release10 - Link WhatsApp clickeable en footer
 
 ---
 
