@@ -33,3 +33,6 @@ y colocarlo en la carpeta public
 - [x] se deve reficicar que el Archivo readme este en la ultima version correspondiete a la versionq se realziao el cambio.
 - [x] quita los gif inferiores del lado izquierdo y derecho de la pagina.
 - [x] Mejora le rendimiento de la carga de la pagina tarna en desplegar el slide de las imagenes.
+
+*Cambio 2026-03-27* - **COMPLETADO** (V26Release10)
+- [x] Agregar líneas de contexto en agents.md con el flujo de trabajo de agentes (@document-writer, @subag_php, @subag_progweb, @subag_security, @subag_tester)

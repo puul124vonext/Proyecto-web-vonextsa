@@ -6,6 +6,27 @@
 
 ---
 
+## 0. Workflow de Agentes
+
+Este flujo establece el orden obligatorio para ejecutar cambios en el proyecto web.
+
+**Antes de ejecutar cambios:**
+- Solicitar al usuario confirmación del release/target
+- Verificar que la documentación esté actualizada
+
+**Durante el desarrollo:**
+1. **Para documentación:** Usar el agente `@document-writer`. Este agente debe realizar la actualización de documentación antes de hacer el commit.
+2. **Para revisión de código PHP:** Usar el agente `@subag_php`.
+3. **Para revisión de formularios web:** Usar el agente `@subag_progweb`.
+
+**Posterior a los cambios:**
+4. El agente `@subag_security` debe revisar el proyecto y elaborar un informe con ayuda de `@document-writer` de lo encontrado.
+
+**Pre-commit:**
+5. El agente `@subag_tester` debe realizar las validaciones necesarias.
+
+---
+
 ## 1. Build / Lint / Test Commands
 
 ```bash
