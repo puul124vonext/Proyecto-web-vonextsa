@@ -16,7 +16,7 @@ Este flujo establece el orden obligatorio para ejecutar cambios en el proyecto w
 
 **Durante el desarrollo:**
 1. **Para documentación:** Usar el agente `@document-writer`. Este agente debe realizar la actualización de documentación antes de hacer el commit.
-2. **Para revisión de código PHP:** Usar el agente `@subag_php`.
+2. **Para revisión de código PHP:** Usar el agente `@subag_progphp`.
 3. **Para revisión de formularios web:** Usar el agente `@subag_progweb`.
 
 **Posterior a los cambios:**

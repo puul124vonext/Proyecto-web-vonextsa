@@ -36,3 +36,73 @@ y colocarlo en la carpeta public
 
 *Cambio 2026-03-27* - **COMPLETADO** (V26Release10)
 - [x] Agregar líneas de contexto en agents.md con el flujo de trabajo de agentes (@document-writer, @subag_php, @subag_progweb, @subag_security, @subag_tester)
+
+*Cambio 2026-04-01* - **COMPLETADO** (V26Release12) - 2026-04-02
+
+<instructions>
+Rediseñar la página web de Vonextsa siguiendo las siguientes directrices:
+
+1. **Estilo visual**: Diseño moderno y minimalista con colores sobrios y tipografía legible.
+2. **Responsividad**: El diseño debe adaptarse a diferentes dispositivos (mobile, tablet, desktop).
+3. **Secciones requeridas**: Inicio, Sobre Nosotros, Servicios, Contacto.
+4. **Rendimiento**: Optimizar la velocidad de carga de la página.
+5. **Accesibilidad**: Asegurar que sea accesible para todos los usuarios.
+6. **Identidad de marca**: El diseño debe reflejar la marca y transmitir profesionalismo y confianza.
+7. **Archivos de referencia** (carpeta logo/):
+   - `fondoPaginaV1.png` → Fondo de la página web
+   - `vonextsa_v2.png` → Nuevo logo de la empresa
+   - `Plantilla.jpg` → Base visual del diseño
+8. **Agente encargado**: Invocar a @subag_progweb para ejecutar el diseño.
+9. **Gestión de versiones**: Crear un nuevo release (V26Release12).
+10. **Documentación**: Actualizar README.md y archivos pertinentes.
+11. **Validación**: Ejecutar los tests necesarios antes de integrar a la rama mail.
+</instructions>
+
+<output_format>
+El resultado debe incluir:
+- Descripción del diseño propuesto
+- Lista de archivos a modificar/crear
+- Pasos para implementar el rediseño
+- Criterios de aceptación verificados
+</output_format>
+
+<verification>
+- [x] Diseño responsive verificado en mobile, tablet y desktop
+- [x] Velocidad de carga optimizada (menor a 3s)
+- [x] Todas las secciones (Inicio, Nosotros, Servicios, Contacto) implementadas
+- [x] Archivos de referencia (fondo, logo) correctamente integrados
+- [x] Tests ejecutados y pasando (6 deprecated, 1 passed)
+- [x] Documentación actualizada (README.md)
+</verification>
+
+nuevos cambios:
+
+<instructions>
+Ajustes adicionales al diseño implementado en V26Release12:
+
+1. **Logo superior**: Eliminar el logo más pequeño de la parte superior izquierda. Mantener solo el logo grande (sin la voz por debajo de "Vonext").
+2. **Inversión de posisição**: Cambiar el sentido de la barra superior:
+   - Logo → lado derecho
+   - Menú (Inicio, Nosotros, Servicios, Contacto) → lado izquierdo
+3. **Sección "Conectamos tu negocio con el futuro"**: Reducir la opacidad del color overlay para que se visible la imagen de fondo.
+4. **Actualización de historial**: Al completar cada paso, actualizar el archivo Cambios.md cambiando el estado de "Pendiente" a "Completado" con la fecha actual.
+5. **Imagen FondoInicial.png**: Usar como fondo principal de la sección hero, reemplazar silueta de mujer.
+6. **Texto VONEXT**: Cambiar de imagen a texto con efectos de gradiente y glow.
+</instructions>
+
+<output_format>
+Lista de archivos a modificar con los cambios solicitados.
+</output_format>
+
+<verification>
+- [x] Logo pequeño eliminado del navbar
+- [x] Logo grande posicionado a la derecha
+- [x] Menú posicionado a la izquierda
+- [x] Overlay de sección "Conectamos tu negocio" con opacidad reducida
+- [x] Archivo Cambios.md actualizado con estado completado
+- [x] FondoInicial.png como background de sección hero
+- [x] Texto VONEXT con gradiente y glow
+- [x] Tests pasando
+- [x] Code style PASS
+- [x] Servidor respondiendo (HTTP 200)
+</verification>

@@ -364,6 +364,22 @@ chmod -R 755 storage bootstrap/cache
 - Actualización de README con secciones de versiones v26Release10 y v26Release11
 - Sección "Última actualización" con fecha y hora
 
+### v26Release12
+- Rediseño completo de la página web (diseño moderno y minimalista)
+- Estilo visual sobrio con tipografía legible (Inter)
+- Colores profesionales: azul #2D5A8A, accent #06B6D4, footer oscuro #0F172A
+- 4 secciones: Inicio (hero), Sobre Nosotros, Servicios, Contacto
+- Uso de logo vonextsa_V2.png y fondo FondoPaginaV1.png
+- Navbar fixed con efecto scroll, moderna interfaz
+- Tarjetas de servicios con hover effects
+- Formulario de contacto mejorado con iconos
+- Footer profesional con información de contacto y horarios
+- Modal Política de Seguridad integrado
+- Responsive design (mobile, tablet, desktop)
+- Lazy loading de imágenes
+- Animaciones suaves y accesibles
+- Tests pasando, code style verificado
+
 ## 📝 Estándares de Código
 
 ### PHP (Laravel)
@@ -454,7 +470,7 @@ Este proyecto es propietario de VONEXT S.A. Todos los derechos reservados.
 
 ## 📅 Última actualización
 
-Marzo 27, 2026 - 11:45 - v26Release11 - Link WhatsApp, docs actualizadas con fecha y hora
+Abril 2, 2026 - V26Release12 - Rediseño moderno y minimalista de la página web
 
 ---
 

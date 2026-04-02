@@ -133,15 +133,14 @@ body {
 }
 
 /* ========================================
-   Hero Section - Fondo corporativo mejorado
+   Hero Section - Con FondoInicial.png
    ======================================== */
 .hero-section {
     min-height: 100vh;
-    /* Gradiente radial elegante: primary center → dark edges → accent glow */
+    /* Fondo principal: FondoInicial.png */
     background: 
-        radial-gradient(ellipse at 30% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(45, 90, 138, 0.3) 0%, transparent 50%),
-        linear-gradient(165deg, #1e3a5f 0%, #2D5A8A 25%, #3d7ab5 60%, #7dd3fc 100%);
+        linear-gradient(135deg, rgba(30, 58, 95, 0.85) 0%, rgba(45, 90, 138, 0.75) 50%, rgba(30, 58, 95, 0.9) 100%),
+        url('../assets/img/FondoInicial.png') center/cover no-repeat;
     position: relative;
     display: flex;
     align-items: center;
@@ -149,32 +148,16 @@ body {
     overflow: hidden;
 }
 
-/* Patrón de fondo decorativo sutil */
-.hero-section::before {
+/* Overlay adicional para asegurar legibilidad del texto */
+.hero-section::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.03) 1px, transparent 1px),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px, 40px 40px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
     pointer-events: none;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    /* Imagen de fondo con opacidad reducida para mayor visibilidad */
-    background: url('../assets/img/FondoPaginaV1.png') center/cover no-repeat;
-    opacity: 0.08;
-    /* Blend mode para combinar con el gradiente */
-    mix-blend-mode: soft-light;
 }
 
 .hero-badge {
@@ -283,6 +266,32 @@ body {
     animation: float 6s ease-in-out infinite;
     /* Espaciado adicional */
     padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.hero-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-silhouette {
+    max-width: 280px;
+    height: auto;
+    /* Efecto de flotación suave */
+    animation: floatSilhouette 8s ease-in-out infinite;
+    /* Filtro para que combine mejor con el diseño */
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
+    opacity: 0.95;
+    /* Ajuste de color para que sea más visible */
+    mix-blend-mode: normal;
+}
+
+@keyframes floatSilhouette {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-15px) scale(1.02); }
 }
 
 @keyframes float {

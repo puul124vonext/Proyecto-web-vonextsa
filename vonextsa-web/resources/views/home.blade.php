@@ -1,202 +1,213 @@
 @extends('layouts.app')
 
 @section('content')
-<section id="inicio" class="hero-section text-white text-center position-relative overflow-hidden">
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="{{ asset('assets/img/img1.png') }}" class="d-block carousel-img" alt="Slide 1">
-                <div class="carousel-caption">
-                    <h1 class="display-4 fw-bold">Comunicación Avanzada</h1>
-                    <p class="lead">Soluciones tecnológicas para empresas modernas</p>
-                    <a href="#contacto" class="btn btn-light btn-lg mt-3">Contáctanos</a>
+<!-- Hero Section -->
+<section id="inicio" class="hero-section">
+    <div class="container position-relative">
+        <div class="row min-vh-100 align-items-center">
+            <div class="col-lg-7">
+                <span class="hero-badge">Soluciones de Comunicación Empresarial</span>
+                <h1 class="hero-title">Conectamos tu negocio con el futuro</h1>
+                <p class="hero-subtitle">Ofrecemos soluciones tecnológicas integrales que transforman la manera en que tu empresa se comunica, opera y crece.</p>
+                <div class="hero-cta">
+                    <a href="#contacto" class="btn btn-primary btn-lg me-2">
+                        <i class="bi bi-send me-2"></i>Contáctanos
+                    </a>
+                    <a href="#servicios" class="btn btn-outline-light btn-lg">
+                        <i class="bi bi-collection me-2"></i>Ver Servicios
+                    </a>
+                </div>
+                <div class="hero-stats mt-5">
+                    <div class="stat-item">
+                        <span class="stat-number">+10</span>
+                        <span class="stat-label">Años de experiencia</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Clientes atendidos</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Soporte disponible</span>
+                    </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/img/img2.png') }}" class="d-block carousel-img" alt="Slide 2" loading="lazy">
-                <div class="carousel-caption">
-                    <h1 class="display-4 fw-bold">Innovación Empresarial</h1>
-                    <p class="lead">Tecnología de vanguardia para tu negocio</p>
-                    <a href="#contacto" class="btn btn-light btn-lg mt-3">Contáctanos</a>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/img/img3.png') }}" class="d-block carousel-img" alt="Slide 3" loading="lazy">
-                <div class="carousel-caption">
-                    <h1 class="display-4 fw-bold">Conectividad Total</h1>
-                    <p class="lead">Integra tus sistemas con soluciones robustas</p>
-                    <a href="#contacto" class="btn btn-light btn-lg mt-3">Contáctanos</a>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/img/img4.png') }}" class="d-block carousel-img" alt="Slide 4" loading="lazy">
-                <div class="carousel-caption">
-                    <h1 class="display-4 fw-bold">Soporte Especializado</h1>
-                    <p class="lead">Equipo dedicado a tu servicio 24/7</p>
-                    <a href="#contacto" class="btn btn-light btn-lg mt-3">Contáctanos</a>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{ asset('assets/img/img5.png') }}" class="d-block carousel-img" alt="Slide 5" loading="lazy">
-                <div class="carousel-caption">
-                    <h1 class="display-4 fw-bold">Confianza y Seguridad</h1>
-                    <p class="lead">Protección garantizada para tus comunicaciones</p>
-                    <a href="#contacto" class="btn btn-light btn-lg mt-3">Contáctanos</a>
+            <div class="col-lg-5 d-none d-lg-block text-center">
+                <div class="hero-visual">
+                    <h2 class="hero-logo-text">VONEXT</h2>
                 </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+    </div>
+    <div class="hero-scroll">
+        <a href="#nosotros" class="scroll-indicator" aria-label="Ir a nosotros">
+            <i class="bi bi-chevron-down"></i>
+        </a>
     </div>
 </section>
 
-<div class="text-center py-4" style="background-color: #e8f4fc;">
-    <a href="#" class="btn btn-outline-primary btn-lg px-4 shadow-sm d-inline-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#politicaSeguridadModal">
-        <i class="fas fa-shield-alt"></i>Política de Seguridad
-    </a>
-</div>
-
-<div class="modal fade" id="politicaSeguridadModal" tabindex="-1" aria-labelledby="politicaSeguridadModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg">
-            <div class="modal-header border-0" style="background: linear-gradient(135deg, #406cab 0%, #2d4a73 100%); color: white;">
-                <div class="d-flex align-items-center gap-3">
-                    <i class="fas fa-shield-alt fa-lg"></i>
-                    <h5 class="modal-title fw-bold" id="politicaSeguridadModalLabel">POLÍTICA GENERAL DE SEGURIDAD DE LA INFORMACIÓN</h5>
+<!-- Sobre Nosotros Section -->
+<section id="nosotros" class="about-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="about-image-wrapper">
+                    <img src="{{ asset('assets/img/nosotros.gif') }}" alt="Sobre VONEXT" class="img-fluid about-img" loading="lazy">
+                    <div class="about-image-accent"></div>
                 </div>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body p-4">
-                <div class="mb-4">
-                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Introducción</h6>
-                    <p class="lead text-dark">Orientar nuestro talento humano y recursos para definir directrices que permitan proteger la información de la empresa y de las partes interesadas.</p>
+            <div class="col-lg-6">
+                <div class="about-content">
+                    <span class="section-badge">Sobre Nosotros</span>
+                    <h2 class="section-title">Innovación y compromiso en cada solución</h2>
+                    <p class="section-text">VONEXT S.A. es una empresa líder en soluciones de comunicación empresarial, comprometida con la excelencia y la innovación tecnológica.</p>
+                    <p class="section-text">Con años de experiencia en el mercado, ayudamos a las organizaciones a optimizar sus procesos de comunicación interna y externa, proporcionando herramientas tecnológicas de última generación.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Seguridad</h5>
+                                <p>Protección de datos con estándares internacionales</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Escalabilidad</h5>
+                                <p>Soluciones que crecen con tu negocio</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h5>Soporte</h5>
+                                <p>Equipo dedicado disponible 24/7</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <hr class="my-4">
-                <div class="mb-4">
-                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Objetivo</h6>
-                    <p>Estableciendo un marco de referencia para la gestión de seguridad de la información, a través de la cual se define las funciones, responsabilidades y medidas necesarias para garantizar su integridad y confidencialidad dentro de un marco legal, de mejoramiento continuo y crecimiento sostenido.</p>
-                </div>
-                <div class="mb-4">
-                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Alcance</h6>
-                    <p>Esta política aplica a todos los colaboradores, proveedores y partes interesadas que interactúen con los sistemas de información de VONEXT S.A.</p>
-                </div>
-                <div class="mb-4">
-                    <h6 class="text-uppercase text-muted fw-bold small mb-3">Principios Fundamentales</h6>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Confidencialidad:</strong> Protección de información sensible contra accesos no autorizados.</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Integridad:</strong> Salvaguarda de la precisión y completitud de la información.</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Disponibilidad:</strong> Acceso autorizado a la información cuando se requiera.</li>
-                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i><strong>Cumplimiento:</strong> Adherencia a normativas legales y estándares de seguridad.</li>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Servicios Section -->
+<section id="servicios" class="services-section">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="section-badge">Nuestros Servicios</span>
+            <h2 class="section-title mx-auto">Soluciones integrales para tu empresa</h2>
+            <p class="section-subtitle mx-auto">Brindamos servicios especializados adaptados a las necesidades de cada cliente</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-envelope-paper"></i>
+                    </div>
+                    <h3 class="service-title">Mensajería Corporativa</h3>
+                    <p class="service-desc">Soluciones de correo electrónico empresariales seguras, confiables y escalables para tu organización.</p>
+                    <ul class="service-list">
+                        <li><i class="bi bi-check2"></i>Correo empresarial</li>
+                        <li><i class="bi bi-check2"></i>Protección contra spam</li>
+                        <li><i class="bi bi-check2"></i>Almacenamiento seguro</li>
                     </ul>
                 </div>
             </div>
-            <div class="modal-footer border-0 bg-light">
-                <button type="button" class="btn btn-primary px-4" data-bs-dismiss="modal">
-                    <i class="fas fa-times me-2"></i>Cerrar
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<section id="nosotros" class="py-5 bg-white">
-    <div class="container">
-        <h2 class="text-center mb-4">Quiénes Somos</h2>
-        <div class="row align-items-center">
-            <div class="col-md-6">
-                <p>VONEXT S.A es una empresa líder en soluciones de comunicación empresarial.
-                Con años de experiencia, ayudamos a las organizaciones a optimizar sus
-                procesos de comunicación interna y externa.</p>
-            </div>
-            <div class="col-md-6">
-                <img src="{{ asset('assets/img/nosotros.gif') }}" alt="Nosotros" class="img-fluid rounded">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="servicios" class="py-5" style="background-color: #e8f4fc;">
-    <div class="container">
-        <h2 class="text-center mb-4">Nuestros Servicios</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Mensajería Corporativa</h5>
-                        <p class="card-text">Soluciones de correo electrónico empresariales seguras y confiables.</p>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-plug"></i>
                     </div>
+                    <h3 class="service-title">Integración API</h3>
+                    <p class="service-desc">Conecta tus sistemas con nuestras APIs de comunicación para optimizar procesos empresariales.</p>
+                    <ul class="service-list">
+                        <li><i class="bi bi-check2"></i>APIs RESTful</li>
+                        <li><i class="bi bi-check2"></i>Documentación completa</li>
+                        <li><i class="bi bi-check2"></i>Soporte técnico dedicado</li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Integración API</h5>
-                        <p class="card-text">Conecta tus sistemas con nuestras APIs de comunicación.</p>
+            <div class="col-md-6 col-lg-4">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="bi bi-headset"></i>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 border-0 shadow-sm">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Soporte 24/7</h5>
-                        <p class="card-text">Equipo de expertos disponible para ayudarte en todo momento.</p>
-                    </div>
+                    <h3 class="service-title">Soporte 24/7</h3>
+                    <p class="service-desc">Equipo de expertos disponible permanentemente para resolver cualquier incidencia.</p>
+                    <ul class="service-list">
+                        <li><i class="bi bi-check2"></i>Atención inmediata</li>
+                        <li><i class="bi bi-check2"></i>Equipo especializado</li>
+                        <li><i class="bi bi-check2"></i>Monitoreo continuo</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="contacto" class="py-5 bg-white">
+<!-- Contacto Section -->
+<section id="contacto" class="contact-section">
     <div class="container">
-        <h2 class="text-center mb-4">Contáctanos</h2>
+        <div class="text-center mb-5">
+            <span class="section-badge">Contacto</span>
+            <h2 class="section-title mx-auto">¿Necesitas más información?</h2>
+            <p class="section-subtitle mx-auto">Escríbenos y nuestro equipo te responderá a la brevedad</p>
+        </div>
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <form id="contactForm" action="{{ route('contact.send') }}" method="POST">
-                    @csrf
-
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre *</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo Electrónico *</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="asunto" class="form-label">Asunto *</label>
-                        <select class="form-select" id="asunto" name="asunto" required>
-                            <option value="">Seleccione una opción</option>
-                            <option value="soporte">Soporte Técnico</option>
-                            <option value="ventas">Ventas</option>
-                            <option value="info">Información General</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="mensaje" class="form-label">Mensaje *</label>
-                        <textarea class="form-control" id="mensaje" name="mensaje" rows="5" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100" id="submitBtn">
-                        Enviar Mensaje
-                    </button>
-                </form>
-
-                <div id="formResponse" class="mt-3 d-none"></div>
+            <div class="col-lg-8">
+                <div class="contact-card">
+                    <form id="contactForm" action="{{ route('contact.send') }}" method="POST" class="contact-form">
+                        @csrf
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="nombre" class="form-label">Nombre completo *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required autocomplete="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Correo electrónico *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="tu@email.com" required autocomplete="email">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="asunto" class="form-label">Asunto *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-chat-dots"></i></span>
+                                    <select class="form-select" id="asunto" name="asunto" required>
+                                        <option value="" selected disabled>Selecciona una opción</option>
+                                        <option value="soporte">Soporte Técnico</option>
+                                        <option value="ventas">Ventas</option>
+                                        <option value="info">Información General</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label for="mensaje" class="form-label">Mensaje *</label>
+                                <div class="input-group">
+                                    <span class="input-group-text align-self-start pt-2"><i class="bi bi-chat-square-text"></i></span>
+                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5" id="submitBtn">
+                                <i class="bi bi-send me-2"></i>Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
+                    <div id="formResponse" class="mt-4 d-none"></div>
+                </div>
             </div>
         </div>
     </div>
